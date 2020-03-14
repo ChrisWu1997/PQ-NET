@@ -1,0 +1,35 @@
+python train.py --module part_ae \
+                --data_root data \
+                --category Lamp \
+                --resolution 16 \
+                --nr_epochs 30 \
+                --batch_size 40 \
+                --lr 5e-4 \
+                --lr_step_size 350 \
+                --save_frequency 50 \
+                -g 0,1 \
+                --vis
+python train.py --module part_ae \
+                --data_root data \
+                --category Lamp \
+                --resolution 32 \
+                --nr_epochs 80 \
+                --batch_size 40 \
+                --lr 5e-4 \
+                --lr_step_size 350 \
+                --save_frequency 50 \
+                -g 0,1 \
+                --vis \
+                --continue
+python train.py --module part_ae \
+                --data_root data \
+                --category Lamp \
+                --resolution 64 \
+                --nr_epochs 300 \
+                --batch_size 40 \
+                --lr 5e-4 \
+                --lr_step_size 350 \
+                --save_frequency 50 \
+                -g 0,1 \
+                --vis \
+                --continue
