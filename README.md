@@ -1,7 +1,7 @@
 # PQ-NET
 This repository provides PyTorch implementation of our paper:
 
-[PQ-NET: A Generative Part Seq2Seq Network for 3D Shapes](https://arxiv.org/abs/1911.10949),
+[PQ-NET: A Generative Part Seq2Seq Network for 3D Shapes](https://arxiv.org/abs/1911.10949)
 
 [Rundi Wu](https://chriswu1997.github.io), [Yixin Zhuang](http://www.yixin.io/), [Kai Xu](https://kevinkaixu.net/), [Hao Zhang](https://www2.cs.sfu.ca/~haoz/), [Baoquan Chen](http://cfcs.pku.edu.cn/baoquan/)
 
@@ -13,7 +13,7 @@ CVPR 2020
 
 - Linux
 - NVIDIA GPU + CUDA CuDNN
-- Python 3
+- Python 3.6
 
 
 
@@ -35,13 +35,24 @@ python setup.py build_ext --inplace
 
 ## Data
 
-TBA.
+We first voxelized PartNet shapes and scale each part to $64^3​$ resolution. We provide data for three categories: chair, table, lamp. Please use this [link](https://disk.pku.edu.cn:443/link/DAFE87E0FB3FD1B61B4E99BDE19B58F3) to download the voxelized PartNet shapes and exact the file to `data/` folder, e.g.
+
+```bash
+cd data
+tar -xvf Lamp.tar.gz
+```
+
+Then run `data/sample_points_from_voxel.py` to sampled paired points and signed values, e.g:
+
+```bash
+python data/sample_points_from_voxel.py --src data --category Lamp
+```
 
 
 
 ## Training
 
-Example training scripts can be found in `scripts` folder. 
+Example training scripts can be found in `scripts` folder. See `config/` for specific definition of all hyper-parameters.  
 
 To train the main model:
 
@@ -62,6 +73,8 @@ sh scripts/lamp/enc_lamp_seq2seq.sh
 # train latent GAN (wgan-gp)
 sh scripts/lamp/train_lamp_lgan.sh
 ```
+
+The trained models and experment logs will be saved in `proj_log/pqnet-PartNet-Lamp/` by default. 
 
 
 
@@ -88,6 +101,8 @@ Example testing scripts can also be found in `scripts` folder.
   # run the main model to decode the generated vectors to final shape
   sh scripts/lamp/dec_lamp_seq2seq.sh
   ```
+
+The results will be saved in`proj_log/pqnet-PartNet-Lamp/results/` by default
 
 
 
