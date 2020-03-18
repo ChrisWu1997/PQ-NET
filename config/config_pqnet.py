@@ -116,10 +116,9 @@ class PQNetConfig(object):
         group1.add_argument('--en_n_layers', type=int, default=5, help="number of layers for part encoder")
         group1.add_argument('--en_f_dim', type=int, default=32, help="filter dimenstion for part encoder(CNN)")
         group1.add_argument('--en_z_dim', type=int, default=128, help="latent space dimension for part ae")
-        # self.en_df_dim = 32
 
         group1.add_argument('--de_n_layers', type=int, default=6, help="number of layers for part decoder")
-        group1.add_argument('--de_f_dim', type=int, default=32, help="hidden dimenstion for part decoder(MLP)")
+        group1.add_argument('--de_f_dim', type=int, default=128, help="hidden dimenstion for part decoder(MLP)")
 
         group2 = parser.add_argument_group('seq2seq')
         group2.add_argument('--boxparam_size', type=int, default=6, help="dimension for part box parameters")
