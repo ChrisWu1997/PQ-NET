@@ -42,7 +42,7 @@ class ImDecoderSkipConnect(nn.Module):
             if i > 0:
                 in_channels += z_dim + 3
             if i < 4:
-                model.append([nn.Linear(in_channels, out_channels), nn.Dropout(p=0.2), nn.LeakyReLU()])
+                model.append([nn.Linear(in_channels, out_channels), nn.Dropout(p=0.4), nn.LeakyReLU()])
             else:
                 model.append([nn.Linear(in_channels, out_channels), nn.LeakyReLU()])
             in_channels = out_channels

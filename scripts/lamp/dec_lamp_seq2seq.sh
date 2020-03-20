@@ -4,4 +4,4 @@ python test.py --dec \
                 --category Lamp \
                 --ckpt 1000 \
                 --format mesh \
-                --fake_z_path proj_log/pqnet-PartNet-Lamp/results/fake_z_ckpt50000_num100.h5
+                --fake_z_path proj_log/pqnet-PartNet-Lamp/results/fake_z_ckpt80000_num100.h5

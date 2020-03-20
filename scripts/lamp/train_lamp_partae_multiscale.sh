@@ -30,6 +30,6 @@ python train.py --module part_ae \
                 --lr 5e-4 \
                 --lr_step_size 350 \
                 --save_frequency 50 \
-                -g 0,1 \
+                -g 0,1,2 \
                 --vis \
                 --continue

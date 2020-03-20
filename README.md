@@ -35,7 +35,7 @@ python setup.py build_ext --inplace
 
 ## Data
 
-We first voxelized PartNet shapes and scale each part to $64^3​$ resolution. We provide data for three categories: chair, table, lamp. Please use this [link](https://disk.pku.edu.cn:443/link/DAFE87E0FB3FD1B61B4E99BDE19B58F3) to download the voxelized PartNet shapes and exact the file to `data/` folder, e.g.
+We first voxelized PartNet shapes and scale each part to $64^3$ resolution. We provide data for three categories: chair, table, lamp. Please use this [link](https://disk.pku.edu.cn:443/link/DAFE87E0FB3FD1B61B4E99BDE19B58F3) to download the voxelized PartNet shapes and exact the file to `data/` folder, e.g.
 
 ```bash
 cd data
@@ -108,7 +108,7 @@ The results will be saved in`proj_log/pqnet-PartNet-Lamp/results/` by default
 
 ## Pre-trained models
 
-TBA.
+Please use this [link]() to download the pretrained model.
 
 
 
