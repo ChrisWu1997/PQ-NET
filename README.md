@@ -74,7 +74,7 @@ sh scripts/lamp/enc_lamp_seq2seq.sh
 sh scripts/lamp/train_lamp_lgan.sh
 ```
 
-The trained models and experment logs will be saved in `proj_log/pqnet-PartNet-Lamp/` by default. 
+The trained models and experment logs will be saved in `proj_log/pqnet-PartNet-Lamp/` by default.
 
 
 
@@ -102,13 +102,13 @@ Example testing scripts can also be found in `scripts` folder.
   sh scripts/lamp/dec_lamp_seq2seq.sh
   ```
 
-The results will be saved in`proj_log/pqnet-PartNet-Lamp/results/` by default
+The results will be saved in`proj_log/pqnet-PartNet-Lamp/results/` by default.
 
 
 
 ## Pre-trained models
 
-Please use this [link]() to download the pretrained model.
+Please use this [link](https://disk.pku.edu.cn:443/link/05D7AD5D179F9F15508323C7141B1918) to download the pretrained model. Download and extract it under `proj_log/`, so that all test scripts can be directly excecuted.
 
 
 
