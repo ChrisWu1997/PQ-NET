@@ -156,5 +156,5 @@ class PQNetConfig(object):
         group.add_argument('--threshold', type=int, default=0.5, help="threshold for isosurface reconstruction")
         group.add_argument('--format', type=str, default='voxel', choices=['voxel', 'sdf', 'mesh'],
                            help="output geometry representation format")
-        group.add_argument('--by_part', type=bool, default=True, help="output shape is segmented into parts or not")
+        group.add_argument('--by_part', type=lambda x: x=='True', default=True, help="output shape is segmented into parts or not")
         group.add_argument('--fake_z_path', type=str, help="file path to generated fake shape codes")
