@@ -7,7 +7,9 @@ This repository provides PyTorch implementation of our paper:
 
 CVPR 2020
 
-
+<p align="center">
+  <img src='teaser.png' width=300>
+</p>
 
 ## Prerequisites
 
@@ -110,6 +112,9 @@ The results will be saved in`proj_log/pqnet-PartNet-Lamp/results/` by default.
 
 Please use this [link](https://disk.pku.edu.cn:443/link/05D7AD5D179F9F15508323C7141B1918) to download the pretrained model. Download and extract it under `proj_log/`, so that all test scripts can be directly excecuted.
 
+
+## Voxelization
+For those who need to train the model on their own dataset, see the instructions and code of our voxelization process [here](https://github.com/ChrisWu1997/PQ-NET/tree/master/voxelization).
 
 
 ## Cite
