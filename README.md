@@ -8,7 +8,7 @@ This repository provides PyTorch implementation of our paper:
 CVPR 2020
 
 <p align="center">
-  <img src='teaser.png' width=300>
+  <img src='teaser.png' width=400>
 </p>
 
 ## Prerequisites
