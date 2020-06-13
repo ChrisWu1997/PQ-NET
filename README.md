@@ -122,13 +122,12 @@ For those who need to train the model on their own dataset, see the instructions
 Please cite our work if you find it useful:
 
 ```
-@misc{wu2019pqnet,
-    title={PQ-NET: A Generative Part Seq2Seq Network for 3D Shapes},
-    author={Rundi Wu and Yixin Zhuang and Kai Xu and Hao Zhang and Baoquan Chen},
-    year={2019},
-    eprint={1911.10949},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+@InProceedings{Wu_2020_CVPR,
+author = {Wu, Rundi and Zhuang, Yixin and Xu, Kai and Zhang, Hao and Chen, Baoquan},
+title = {PQ-NET: A Generative Part Seq2Seq Network for 3D Shapes},
+booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = {June},
+year = {2020}
 }
 ```
 
