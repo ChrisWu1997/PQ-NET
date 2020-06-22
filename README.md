@@ -37,7 +37,7 @@ python setup.py build_ext --inplace
 
 ## Data
 
-We first voxelized PartNet shapes and scale each part to $64^3$ resolution. We provide data for three categories: chair, table, lamp. Please use this [link](https://disk.pku.edu.cn:443/link/DAFE87E0FB3FD1B61B4E99BDE19B58F3) to download the voxelized PartNet shapes and exact the file to `data/` folder, e.g.
+We first voxelized PartNet shapes and scale each part to $64^3$ resolution. We provide data for three categories: chair, table, lamp. Please use [link1(PKU disk)](https://disk.pku.edu.cn:443/link/DAFE87E0FB3FD1B61B4E99BDE19B58F3) or [link2(Google Drive)](https://drive.google.com/drive/folders/1QJBhyECm8-GN_m8PnrtuptCalymUYepb?usp=sharing) to download the voxelized PartNet shapes and exact the file to `data/` folder, e.g.
 
 ```bash
 cd data
@@ -110,7 +110,7 @@ The results will be saved in`proj_log/pqnet-PartNet-Lamp/results/` by default.
 
 ## Pre-trained models
 
-Please use this [link](https://disk.pku.edu.cn:443/link/05D7AD5D179F9F15508323C7141B1918) to download the pretrained model. Download and extract it under `proj_log/`, so that all test scripts can be directly excecuted.
+Please use [link1(PKU disk)](https://disk.pku.edu.cn:443/link/05D7AD5D179F9F15508323C7141B1918) or [link2(Google Drive)](https://drive.google.com/drive/folders/1u2GKZ0vSUIoWkwThmkErDxkgXEap-DtB?usp=sharing) to download the pretrained model. Download and extract it under `proj_log/`, so that all test scripts can be directly excecuted.
 
 
 ## Voxelization
