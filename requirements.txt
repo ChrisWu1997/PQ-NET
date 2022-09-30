@@ -7,5 +7,5 @@ tensorboardX==1.7
 torch==1.2.0
 tqdm==4.42.1
 trimesh==3.2.19
-joblib==0.14.1
+joblib==1.2.0
 Cython==0.29.13
