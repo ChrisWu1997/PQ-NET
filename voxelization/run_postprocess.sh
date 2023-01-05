@@ -9,10 +9,10 @@ start_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`
 python convert_h5_vox.py --src $1 --out $2
 
 # fill inner region to make voxel solid
-python fill_part_solid.py --src $2 --out $2_solid
+python fill_part_solid.py --src $2 --out $2
 
 # scale solid part voxel to 64^3
-python rescale_part_vox.py --src $2_solid
+python rescale_part_vox.py --src $2
 
 finish_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`
 duration=$(($(($(date +%s -d "$finish_time")-$(date +%s -d "$start_time")))))

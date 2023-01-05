@@ -4,11 +4,7 @@ import glob
 import numpy as np
 from tqdm import tqdm
 import json
-
-
-def ensure_dir(path):
-    if not os.path.exists(path):
-        os.makedirs(path)
+import argparse
 
 
 def main():
@@ -20,81 +16,50 @@ def main():
 
     src_root = args.src # "/home/megaBeast/Desktop/partnet_data/voxelized/Table2"
     tgt_root = args.out # "/dev/data/partnet_data/wurundi/voxelized/Table2"
-    ensure_dir(tgt_root)
+    os.makedirs(tgt_root, exist_ok=True)
 
-    vox_dim = 64
     class_info = {}
     shape_names = sorted(os.listdir(src_root))
+    shape_names = [name for name in shape_names if name.endswith('.h5')]
     total_valid_nums = 0
     for name in tqdm(shape_names):
-        shape_dir = os.path.join(src_root, name)
-        part_paths = sorted(glob.glob(os.path.join(shape_dir, 'object_*.h5')))
-        # u_part_paths = sorted(glob.glob(os.path.join(shape_dir, 'u_object_*.h5')))
-        n_parts = len(part_paths)
+        path = os.path.join(src_root, name)
+        with h5py.File(path, "r") as fp:
+            part_voxels = fp["tensor"][:] # (n_parts, reso, reso, reso)
 
-        save_path = os.path.join(tgt_root, name + '.h5')
-
-        # whole shape
-        # with h5py.File(os.path.join(shape_dir, 'shape.h5'), 'r') as fp:
-        #     shape_voxel = fp['tensor'][0]
-
-        shape_voxel = np.zeros((vox_dim, vox_dim, vox_dim))
-
-        # parts voxel in origin shape
+        shape_voxel = np.zeros(part_voxels.shape[1:], dtype=np.uint8)
         incomplete = False
-        parts_voxel_origin = []
-        for i in range(n_parts):
-            path = os.path.join(shape_dir, 'object_{}.h5'.format(i + 1))
-            with h5py.File(path, 'r') as fp:
-                part_voxel = fp['tensor'][0]
-            parts_voxel_origin.append(part_voxel)
-
-            part_points = np.where(part_voxel >= 1)
-            part_points = np.stack(part_points, axis=0)
-            ori_voxel_on_points = shape_voxel[part_points[0], part_points[1], part_points[2]]
-            zero_positions = np.where(ori_voxel_on_points == 0)[0]
-            part_points = part_points[:, zero_positions]
-
-            if part_points.shape[1] == 0:
-                print("ID {} part {} not shown.".format(name, i))
+        for i in range(part_voxels.shape[0]):
+            mask = part_voxels[i] > 0
+            if np.sum(mask) == 0:
+                print("ID {} part {} not shown. skip this shape.".format(name, i))
                 incomplete = True
                 break
-            shape_voxel[part_points[0], part_points[1], part_points[2]] = i + 1
-
+            shape_voxel[part_voxels[i] > 0] = i + 1
+        
         if incomplete:
             continue
-
-        parts_voxel_origin = np.stack(parts_voxel_origin, axis=0)
-
-        # parts voxel in its own scaled shape
-        # parts_voxel_scaled = []
-        # for i in range(n_parts):
-        #     with h5py.File(u_part_paths[i], 'r') as fp:
-        #         part_voxel = fp['tensor'][0]
-        #     parts_voxel_scaled.append(part_voxel)
-        # parts_voxel_scaled = np.stack(parts_voxel_scaled, axis=0)
-
-        if len(np.unique(shape_voxel)) - 1 != n_parts:
-            print("n_parts mismatch! ID: {}, ori: {}, now: {}".format(name, n_parts,
-                                                                      len(np.unique(shape_voxel)) - 1))
-        # save
+        
+        vox_dim = shape_voxel.shape[0]
+        n_parts = part_voxels.shape[0]
+        save_path = os.path.join(tgt_root, name)
+        shape_id = name.split(".")[0]
         with h5py.File(save_path, 'w') as fp:
             fp.create_dataset('shape_voxel{}'.format(vox_dim), shape=(vox_dim, vox_dim, vox_dim),
                               dtype=np.uint8, data=shape_voxel, compression=9)
             fp.create_dataset('parts_voxel{}'.format(vox_dim), shape=(n_parts, vox_dim, vox_dim, vox_dim),
-                              dtype=np.bool, data=parts_voxel_origin, compression=9)
-            # fp.create_dataset('parts_voxel_scaled{}'.format(vox_dim), shape=(n_parts, vox_dim, vox_dim, vox_dim),
-            #                   dtype=np.bool, data=parts_voxel_scaled, compression=9)
+                              dtype=np.bool, data=part_voxels.astype(np.bool), compression=9)
             fp.attrs['n_parts'] = n_parts
-            fp.attrs['name'] = name.encode('utf-8')
+            fp.attrs['name'] = shape_id.encode('utf-8')
 
-        class_info.update({name: n_parts})
+        class_info.update({shape_id: n_parts})
         total_valid_nums += 1
 
     with open(os.path.join(tgt_root + "_info.json"), 'w') as f:
         json.dump(class_info, f)
 
     print(total_valid_nums)
+
 
 if __name__ == '__main__':
     main()

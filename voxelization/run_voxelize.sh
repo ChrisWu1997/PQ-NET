@@ -9,11 +9,13 @@
 
 start_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`
 
+mkdir -p $2
+
 shape_num=1
 
 for element in `ls $1`
     do
-        dir_or_file=$1$element
+        dir_or_file=$1/$element
         if [ -d $dir_or_file ]
         then
             echo "+++++ Read "$shape_num" shape in "$dir_or_file" +++++"
@@ -21,7 +23,7 @@ for element in `ls $1`
 
             if [ $shape_num -gt 0 ]
             then
-                ./voxelize occ $2$element/ $2$element/ --width $4 --height $4 --depth $4
+                ./voxelize occ $1/$element/ $2/$element.h5 --width $4 --height $4 --depth $4
             fi
 
             tiny_finish_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`
