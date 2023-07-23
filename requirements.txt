@@ -4,7 +4,7 @@ numpy==1.22.0
 Pillow==9.0.1
 PyMCubes==0.0.9
 tensorboardX==1.7
-torch==1.2.0
+torch==1.13.1
 tqdm==4.42.1
 trimesh==3.2.19
 joblib==1.2.0
